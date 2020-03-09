@@ -1,19 +1,16 @@
 #!/bin/bash -x
 echo "Welcome to Snakes and Ladders Simulator"
 
-# CONSTANTS
-noPlay=0
-ladder=1
-snake=2
-
 # VARIBLES
 position=0
 
-# ROLL A DIE
-dieRoll=$((RANDOM%6+1))
-check=$((RANDOM%3))
 # FUNCTION TO CHECK FOR OPTIONS (NO PLAY, LADDER AND SNAKE)
 function OptionCheck () {
+	noPlay=0
+	ladder=1
+	snake=2
+	dieRoll=$((RANDOM%6+1))	# ROLL A DIE
+	check=$((RANDOM%3))
 	case $check in
 		$noPlay )
 			position=0			# NO PLAY
@@ -25,9 +22,15 @@ function OptionCheck () {
 			position=$((position-dieRoll))	# SNAKE
 			if [[ $position -lt 0 ]]
 			then
-		         	position=0
-      	fi
+				position=0
+			else
+				echo "$position"
+			fi
 			;;
 	esac
 }
-OptionCheck	# CALLING THE FUNCTION
+
+while [[ $position -le 100 ]]
+do
+	OptionCheck	# CALLING THE FUNCTION
+done
