@@ -3,9 +3,11 @@ echo "Welcome to Snakes and Ladders Simulator"
 
 # VARIBLES
 position=0
+dieRollCount=0
 
 # FUNCTION TO CHECK FOR OPTIONS (NO PLAY, LADDER AND SNAKE)
-function OptionCheck () {
+function PositionCount () {
+	((dieRollCount++))
 	check=$((RANDOM%3))
 	noPlay=0
 	ladder=1
@@ -30,9 +32,12 @@ function OptionCheck () {
 			fi
 			;;
 	esac
+	count=$dieRollCount
 }
 # CONDITION TO CHECK THE EXACT 100TH POSITION
 while [[ $position -lt 100 ]]
 do
-	OptionCheck	# CALLING THE FUNCTION
+	PositionCount	# CALLING THE FUNCTION
+	dieRollTimes=$count
+	positionAfterDieRoll=$position
 done
