@@ -17,6 +17,10 @@ function OptionCheck () {
 			;;
 		$ladder )
 			position=$((position+dieRoll))	# LADDER
+			if [[ $position -gt 100 ]]
+			then
+				position=$(($position-$dieRoll))
+			fi
 			;;
 		$snake )
 			position=$((position-dieRoll))	# SNAKE
@@ -27,8 +31,8 @@ function OptionCheck () {
 			;;
 	esac
 }
-
-while [[ $position -le 100 ]]
+# CONDITION TO CHECK THE EXACT 100TH POSITION
+while [[ $position -lt 100 ]]
 do
 	OptionCheck	# CALLING THE FUNCTION
 done
